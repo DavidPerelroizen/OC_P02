@@ -30,6 +30,10 @@ def scrapPage(url):
         product_category_extract = soup.findAll('a')
         element_list.append(product_category_extract[3].text)
 
+        """Extract review rating and add it to the element_list"""
+
+
+
         return element_list
 
 
