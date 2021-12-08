@@ -31,8 +31,17 @@ def scrapPage(url):
         element_list.append(product_category_extract[3].text)
 
         """Extract review rating and add it to the element_list"""
+        # No idea for the moment, to be continued
+        paragraphs_extract = soup.findAll('p')
+        review_rating_extract = paragraphs_extract[2]
+        review_rating = review_rating_extract['class']
+        element_list.append(review_rating[1])
 
 
+        """Extract image url and add it to the element_list"""
+        image_url_extract = soup.find('img')
+        image_url = image_url_extract['src']
+        element_list.append(image_url)
 
         return element_list
 
