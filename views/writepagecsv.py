@@ -17,7 +17,7 @@ csv_header = [
 
 def writeCsvFile(header, output_file_name, pages):
     """Create a CSV file where it will write the result of the page scrapping for a given list of pages"""
-    with open(str(output_file_name) + '.csv', 'w') as outf:
+    with open(str(output_file_name) + '.csv', 'w', encoding='utf-8') as outf:
         writer = csv.writer(outf)
         writer.writerow(header)
         for page in pages:
