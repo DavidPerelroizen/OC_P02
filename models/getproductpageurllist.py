@@ -16,5 +16,6 @@ def getproductpageurllist(url):
             item = i['href']
             item_clean = item[9:]
             product_page_url_list.append("https://books.toscrape.com/catalogue/" + item_clean)
+            product_page_url_list = list(set(product_page_url_list))
 
         return product_page_url_list
