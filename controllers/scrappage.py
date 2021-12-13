@@ -1,5 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
+import shutil
+import string
+from models.constants import FORBIDDEN_CHARACTERS_IN_FILES
 
 
 def scrapPage(url):
@@ -31,7 +34,6 @@ def scrapPage(url):
         element_list.append(product_category_extract[3].text)
 
         """Extract review rating and add it to the element_list"""
-        # No idea for the moment, to be continued
         paragraphs_extract = soup.findAll('p')
         review_rating_extract = paragraphs_extract[2]
         review_rating = review_rating_extract['class']
@@ -41,10 +43,18 @@ def scrapPage(url):
         """Extract image url and add it to the element_list"""
         image_url_extract = soup.find('img')
         image_url = image_url_extract['src']
+        image_url = 'https://books.toscrape.com' + image_url[5:]
         element_list.append(image_url)
 
+        """Download and save the image file"""
+        req_img = requests.get(image_url, stream=True)
+        for c in FORBIDDEN_CHARACTERS_IN_FILES:  # avoids trouble when saving the image file
+            title_clean = title_clean.replace(c, '')
+        if req_img.status_code == 200:
+            with open(title_clean + image_url[-4:], 'wb') as f:
+                shutil.copyfileobj(req_img.raw, f)
+        
         return element_list
-
 
 
 
