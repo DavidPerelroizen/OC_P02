@@ -16,8 +16,8 @@ def categoryscrap(url_category, header, book_category_name):
 
     # Code block below combines steps 3 & 4
     for page in next_pages_list:
-        temp_list = getproductpageurllist(page)
-        for i in temp_list:
+        for i in getproductpageurllist(page):
             product_pages_url_list.append(i)
 
     return writeCsvFile(header, book_category_name, product_pages_url_list)  # Step 5
+

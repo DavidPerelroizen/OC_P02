@@ -9,7 +9,7 @@ def getnextpageslist(url):
     :param url:
     :return:
     """
-    category_pages_url_list = [url]
+    category_pages_url_list = []
     next_page_url_extract = 0
     indice = 0
     number_of_results_per_page = 20
@@ -20,13 +20,11 @@ def getnextpageslist(url):
     number_of_results = int(number_of_results_extract.text)
     number_of_pages = math.ceil(number_of_results/number_of_results_per_page)
 
-    for i in range(0, number_of_pages-1):
-        response = requests.get(category_pages_url_list[indice])
-        if response.ok:
-            soup = BeautifulSoup(response.text, features="html.parser")
-            next_page_url_extract = soup.find('li', 'next').find('a')
-            next_page_url = next_page_url_extract['href']
-            category_pages_url_list.append(str(url) + next_page_url)
-            indice += 1
+    if number_of_pages == 1:
+        category_pages_url_list.append(url)
+
+    else:
+        for i in range(1, number_of_pages+1):
+            category_pages_url_list.append(url[:52] + url[52:-11] + '/page-' + str(i) +'.html')
 
     return category_pages_url_list

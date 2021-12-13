@@ -1,12 +1,11 @@
-from models.webpage import url_site, url_page
-from controllers.scrappage import *
 from views.writepagecsv import csv_header
-from models.getcategoryurls import getproductcategories
-from models.getnextpageslist import getnextpageslist
-from models.getproductpageurllist import getproductpageurllist
-from controllers.runcategoryscrap import categoryscrap
+from controllers.runfullscrap import fullscrap
 
-url = "https://books.toscrape.com/catalogue/category/books/sequential-art_5/"
+url_category = "https://books.toscrape.com/catalogue/category/books/sequential-art_5/index.html"
+url_website = "https://books.toscrape.com"
+url_product_page = 'https://books.toscrape.com/catalogue/category/books/travel_2/index.html'
 
-categoryscrap(url, csv_header, 'Sequential_art')
+
+fullscrap(url_website, csv_header)
+
 
