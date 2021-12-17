@@ -16,6 +16,8 @@ Ce programme permet de scrapper le site web https://books.toscrape.com pour en r
       
   2. Le programme va télécharger l'image de chaque livre consulté
 
+  3. Les fichiers générés seront classés dans un dossier CSV ou Image selon leur type
+
 ## Packages à installer
     Se référer au fichier requirements.txt
     
