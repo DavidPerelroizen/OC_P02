@@ -51,7 +51,7 @@ def scrapPage(url):
         for c in FORBIDDEN_CHARACTERS_IN_FILES:  # avoids trouble when saving the image file
             title_clean = title_clean.replace(c, '')
         if req_img.status_code == 200:
-            with open(title_clean + image_url[-4:], 'wb') as f:
+            with open(r'C:\Users\david\PycharmProjects\Projets OC\P02\Image_files' + '\\' + title_clean + image_url[-4:], 'wb') as f:
                 shutil.copyfileobj(req_img.raw, f)
         
         return element_list
