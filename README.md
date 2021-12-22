@@ -22,5 +22,6 @@ Ce programme permet de scrapper le site web https://books.toscrape.com pour en r
     Se référer au fichier requirements.txt
     
 ## Utilisation
+    Mettre à jour le chemin pour créer les dossiers où seront stockés les fichiers csv et image dans la page "constants.py"
     Exécuter le fichier main.py
   
