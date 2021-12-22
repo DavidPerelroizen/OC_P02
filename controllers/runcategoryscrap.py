@@ -2,7 +2,7 @@ from models.getnextpageslist import getnextpageslist
 from models.getproductpageurllist import getproductpageurllist
 from views.writepagecsv import writeCsvFile
 
-def categoryscrap(url_category, header, book_category_name):
+def categoryscrap(url_category, header, book_category_name, csv_directory_path, image_directory_path):
     """
     Step 1: get category page url --> in function arguments
     Step 2: get the list of all pages from this category
@@ -19,5 +19,5 @@ def categoryscrap(url_category, header, book_category_name):
         for i in getproductpageurllist(page):
             product_pages_url_list.append(i)
 
-    return writeCsvFile(header, book_category_name, product_pages_url_list)  # Step 5
-
+    # Step 5
+    return writeCsvFile(header, book_category_name, product_pages_url_list, csv_directory_path, image_directory_path)

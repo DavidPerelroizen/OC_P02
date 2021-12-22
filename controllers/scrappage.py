@@ -1,11 +1,10 @@
 from bs4 import BeautifulSoup
 import requests
 import shutil
-import string
 from models.constants import FORBIDDEN_CHARACTERS_IN_FILES
 
 
-def scrapPage(url):
+def scrapPage(url, image_directory_path):
     """This function extracts the list of the wanted from a specified web page and returns that list"""
     response = requests.get(url)
     if response.ok:
@@ -51,7 +50,7 @@ def scrapPage(url):
         for c in FORBIDDEN_CHARACTERS_IN_FILES:  # avoids trouble when saving the image file
             title_clean = title_clean.replace(c, '')
         if req_img.status_code == 200:
-            with open(r'C:\Users\david\PycharmProjects\Projets OC\P02\Image_files' + '\\' + title_clean + image_url[-4:], 'wb') as f:
+            with open(image_directory_path + '/' + title_clean + image_url[-4:], 'wb') as f:
                 shutil.copyfileobj(req_img.raw, f)
         
         return element_list

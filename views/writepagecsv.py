@@ -15,13 +15,13 @@ csv_header = [
 ]
 
 
-def writeCsvFile(header, output_file_name, pages):
+def writeCsvFile(header, output_file_name, pages, csv_folder_path, image_folder_path):
     """Create a CSV file where it will write the result of the page scrapping for a given list of pages"""
-    with open(r'C:\Users\david\PycharmProjects\Projets OC\P02\CSV_files' + "\\" + str(output_file_name) + '.csv', 'w', encoding='utf-8') as outf:
+    with open(csv_folder_path + "/" + str(output_file_name) + '.csv', 'w', encoding='utf-8') as outf:
         writer = csv.writer(outf)
         writer.writerow(header)
         for page in pages:
-            scrapping_result = scrapPage(page)
+            scrapping_result = scrapPage(page, image_folder_path)
             writer.writerow(scrapping_result)
         return outf
 
