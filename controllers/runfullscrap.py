@@ -17,6 +17,11 @@ Step 3: scrap each category
 def fullscrap(web_site_url, header):
 
     category_name = 0
+
+    """
+    While loop in order to check whether the directory name already exists and adapt the name if so
+    Target is to avoid FileExistsError
+    """
     i = 0
     csv_path = directory_csv_files
     while os.path.isdir(csv_path) == True:
@@ -24,6 +29,10 @@ def fullscrap(web_site_url, header):
         i += 1
     os.mkdir(csv_path)  # Create directory to store the CSV files
 
+    """
+    While loop in order to check whether the directory name already exists and adapt the name if so
+    Target is to avoid FileExistsError
+    """
     j = 0
     image_path = directory_image_files
     while os.path.isdir(image_path) == True:
