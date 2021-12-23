@@ -1,6 +1,7 @@
 from models.getnextpageslist import getnextpageslist
 from models.getproductpageurllist import getproductpageurllist
 from views.writepagecsv import writeCsvFile
+import os
 
 def categoryscrap(url_category, header, book_category_name, csv_directory_path, image_directory_path):
     """
@@ -8,7 +9,8 @@ def categoryscrap(url_category, header, book_category_name, csv_directory_path, 
     Step 2: get the list of all pages from this category
     Step 3: for each page from Step 2 list, get the list of all the products pages url
     Step 4: combine the products pages url lists of each page into one list of urls
-    Step 5: create a csv file for all the category products
+    Step 5: create a specific directory per book category to store images
+    Step 6: create a csv file for all the category products
     """
 
     next_pages_list = getnextpageslist(url_category)  # Step 2
@@ -20,4 +22,8 @@ def categoryscrap(url_category, header, book_category_name, csv_directory_path, 
             product_pages_url_list.append(i)
 
     # Step 5
-    return writeCsvFile(header, book_category_name, product_pages_url_list, csv_directory_path, image_directory_path)
+    new_path = image_directory_path + '/' + book_category_name
+    os.mkdir(new_path)
+
+    # Step 6
+    return writeCsvFile(header, book_category_name, product_pages_url_list, csv_directory_path, new_path)
